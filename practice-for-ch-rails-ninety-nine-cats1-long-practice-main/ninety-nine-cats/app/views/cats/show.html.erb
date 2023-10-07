@@ -1,20 +1,25 @@
-<table border = "1">
-<thead>
-    <tr>
-        <th colspan="4"><%=@cat.name%></th>
-    </tr>
-</thead>
-<tbody>
-<tr>
-<td>attribute</td>  
-<td>value</td>
+<h1><%= @cat.name %><h1/>
 
+<table border = 2>
+<tr>
+<th>Attribute</th>  
+<th>Value</th>
 </tr>
+
+<% [:birth_date, :color, :name, :sex].each do |attr_name| %>
     <tr>
-        <td><%=@cat.name%></td>  
-        <td><%=@cat.birth_date%></td>
-        <td><%=@cat.color%></td>
-        <td><%=@cat.sex%></td>
+        <td><%= attr_name %></td>
+        <td><%= @cat.send(attr_name) %></td>  
     </tr>
-</tbody>
+    <% end %>
+<% if @cat.description.present? %>
+<tr>
+    <th colspan="2">Description</th>
+</tr>
+<tr>
+    <td colspan="2"><%= @cat.description %></td>
+</tr>
+<% end %>
 </table>
+
+
